@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="boc.shadow.domain.Item" table="items">
+        <cache usage="read-only"/>
+        <id name="item_id" column="item_id" type="java.lang.Integer">
+            <generator class="increment"/>
+        </id>
+        <property name="item_name" column="item_name" type="java.lang.String"/>
+        <many-to-one name="userCreator" column="item_creator_id" class="boc.shadow.domain.User"/>
+        <many-to-one name="userFollower" column="item_follower_id" class="boc.shadow.domain.User"/>
+        <property name="item_create_time" column="item_create_time" type="java.util.Date"/>
+        <property name="item_description" column="item_description" type="java.lang.String"/>
+        <property name="item_state" column="item_state" type="java.lang.String"/>
+        <property name="item_type_id" column="item_type_id" type="java.lang.Integer"/>
+        <property name="item_priority_id" column="item_priority_id" type="java.lang.Integer"/>
+    </class>
+</hibernate-mapping>

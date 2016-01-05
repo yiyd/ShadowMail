@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="boc.shadow.domain.Notify" table="auto_notify">
+        <cache usage="read-write"/>
+        <id name="auto_id" column="auto_id" type="java.lang.Integer">
+            <generator class="increment"/>
+        </id>
+        <many-to-one name="item" column="item_id" class="boc.shadow.domain.Item" not-null="true"/>
+        <property name="auto_date" column="auto_date" type="java.util.Date" not-null="true"/>
+        <property name="auto_type" column="auto_type" type="java.lang.String" not-null="true"/>
+        <many-to-one name="user" column="user_id" class="boc.shadow.domain.User" not-null="true"/>
+    </class>
+</hibernate-mapping>

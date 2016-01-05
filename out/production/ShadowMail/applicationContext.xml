@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+       <context:annotation-config></context:annotation-config>
+       <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+              <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+
+              <property name="url" value="jdbc:mysql://localhost:3306/shadow"></property>
+
+              <property name="username" value="shadow_admin"></property>
+
+              <property name="password" value="passwd"></property>
+       </bean>
+
+       <bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+              <property name="mappingResources">
+                     <list>
+                            <value>boc/shadow/domain/user.hbm.xml</value>
+                            <value>boc/shadow/domain/item.hbm.xml</value>
+                            <value>boc/shadow/domain/notify.hbm.xml</value>
+                     </list>
+              </property>
+              <property name="hibernateProperties">
+                     <value>
+                            hibernate.dialect = org.hibernate.dialect.MySQL5Dialect
+                            hibernate.hbm2ddl.auto = true
+                            hibernate.show_sql = true
+                            hibernate.format_sql = true
+
+                            hibernate.cache.user_second_level = true
+                            hibernate.cache.provider_class = org.hibernate.cache.EhCacheProvider
+                     </value>
+              </property>
+              <property name="dataSource">
+                     <ref bean="dataSource"></ref>
+              </property>
+       </bean>
+
+       <!--  DAO bean -->
+       <bean id="ItemDAO" class="boc.shadow.dao.impl.ItemDaoImpl">
+              <!-- inject the sessionFactory -->
+              <property name="sessionFactory" ref="sessionFactory"></property>
+       </bean>
+       <bean id="NotifyDAO" class="boc.shadow.dao.impl.NotifyDaoImpl">
+              <property name="sessionFactory" ref="sessionFactory"></property>
+       </bean>
+       <bean id="UserDAO" class="boc.shadow.dao.impl.UserDaoImpl">
+              <property name="sessionFactory" ref="sessionFactory"></property>
+       </bean>
+
+</beans>

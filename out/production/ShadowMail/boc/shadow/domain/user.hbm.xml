@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="boc.shadow.domain.User" table="users">
+        <cache usage="read-only"/>
+        <id name="user_id" type="java.lang.Integer" column="user_id">
+            <generator class="increment"></generator>
+        </id>
+        <!-- mapping the common attributions-->
+        <property name="user_name" column="user_name" type="java.lang.String"/>
+        <property name="user_passwd" column="user_passwd" type="java.lang.String"/>
+        <property name="role_id" column="role_id" type="java.lang.Integer"/>
+        <property name="user_mail" column="user_mail" type="java.lang.String"/>
+    </class>
+</hibernate-mapping>
