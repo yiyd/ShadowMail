@@ -13,9 +13,9 @@ import java.util.Properties;
  */
 public class SendNotifyMail {
     private String hostName = "smtp.yeah.net";// notes server address
-    private String userName = "yiyecao1993@yeah.net";// admin_user`s email address
-    private String userPasswd = "yanyanweng1314";// admin_user passwd
-    private String from = "yiyecao1993@yeah.net"; // admin_user`s email
+    private String userName = "xxx@yeah.net";// admin_user`s email address
+    private String userPasswd = "xxxx";// admin_user passwd
+    private String from = "xxxx@yeah.net"; // admin_user`s email
     private String to = "";
     private String subject = "";
     private String mailContent = "";
